@@ -39,7 +39,7 @@
           };
 
 	  var data = response.getDataTable();
-	  var chart = new new google.visualization.LineChart(document.getElementById('csv-div'));
+	  var chart = new google.visualization.LineChart(document.getElementById('csv-div'));
 	  chart.draw(data, options_lines);
       }
 
@@ -48,12 +48,6 @@
 
   <body>
     <!--Div that will hold the dashboard-->
-    <div id="dashboard_div">
-      <!--Divs that will hold each control and chart-->
-      <div id="filter_div"></div>
-      <div id="chart_div"></div>
-    </div>
-    <div id="chart_lines" style="width: 900px; height: 500px;"></div>
     <div id="csv-div"></div>
   </body>
 </html>
