@@ -13,7 +13,7 @@
 	
 	  var queryOptions = {
 	      // Define the CSV data columns
-    	      csvColumns: ['string', 'number', 'number', 'number'],
+    	      csvColumns: ['string', 'number', 'number', 'number', 'number'],
 	      // This should be false if your CSV file doesn't have a header
     	      csvHasHeader: true
 	  };
@@ -29,9 +29,18 @@
               return;
 	  }
 
+	  // The intervals data as narrow lines (useful for showing raw source data)
+          var options_lines = {
+              title: 'Line intervals, default',
+              curveType: 'function',
+              lineWidth: 4,
+              intervals: { 'style':'line' },
+              legend: 'none'
+          };
+
 	  var data = response.getDataTable();
-	  var chart = new google.visualization.ColumnChart(document.getElementById('csv-div'));
-	  chart.draw(data);
+	  var chart = new new google.visualization.LineChart(document.getElementById('csv-div'));
+	  chart.draw(data, options_lines);
       }
 
     </script>
