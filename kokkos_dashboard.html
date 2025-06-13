@@ -31,10 +31,10 @@
 
 	  // The intervals data as narrow lines (useful for showing raw source data)
           var options_lines = {
-              title: 'Line intervals, default',
+              title: 'Area intervals, default',
               curveType: 'function',
-              lineWidth: 4,
-              intervals: { 'style':'line' },
+              series: [{'color': '#F1CA3A'}],
+              intervals: { 'style':'area' },
               legend: 'none'
           };
 
@@ -48,6 +48,6 @@
 
   <body>
     <!--Div that will hold the dashboard-->
-    <div id="csv-div"></div>
+    <div id="csv-div" style="width: 900px; height: 500px;"></div>
   </body>
 </html>
