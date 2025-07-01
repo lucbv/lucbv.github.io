@@ -8,9 +8,9 @@
       // Load the Charts and the corechart package.
 
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosSparse_spmv_n_10000_nv_1_real_time.csv', 'spmv_10000_1-div', 'Spmv: num row 10,000, num vecs 1'));
+      google.charts.setOnLoadCallback(drawChart('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosSparse_spmv_n_10000_nv_1_real_time.csv'));
 
-      function drawChart(csv_file, div_name, plot_title) {
+      function drawChart(csv_file) {
 	
 	  var queryOptions = {
 	      // Define the CSV data columns
@@ -21,29 +21,48 @@
 	   
 	  // Create the query giving the path and name of the CSV file
 	  var query = new google.visualization.Query(csv_file, queryOptions);
-	  query.send(makeQueryHandlerWithParams(div_name, plot_title));
+	  query.send(handleQueryResponse);
       }
 
-      const makeQueryHandlerWithParams = (div_name, plot_title) => {
-	  return function handleQueryResponse(response) {
-	      if (response.isError()) {
-    		  alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-		  return;
-	      }
-
-	      // The intervals data as narrow lines (useful for showing raw source data)
-              var options_lines = {
-		  title: plot_title,
-		  series: [{'color': '#F1CA3A'}],
-		  intervals: { 'style':'area' },
-		  legend: 'right'
-              };
-
-	      var data = response.getDataTable();
-	      var chart = new google.visualization.LineChart(document.getElementById(div_name));
-	      chart.draw(data, options_lines);
+      function handleQueryResponse(response) {
+	  if (response.isError()) {
+    	      alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+	      return;
 	  }
+
+	  // The intervals data as narrow lines (useful for showing raw source data)
+          var options_lines = {
+	      title: plot_title,
+	      series: [{'color': '#F1CA3A'}],
+	      intervals: { 'style':'area' },
+	      legend: 'right'
+          };
+
+	  var data = response.getDataTable();
+	  var chart = new google.visualization.LineChart(document.getElementById(div_name));
+	  chart.draw(data, options_lines);
       }
+
+      // const makeQueryHandlerWithParams = (div_name, plot_title) => {
+      // 	  return function handleQueryResponse(response) {
+      // 	      if (response.isError()) {
+      // 		  alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+      // 		  return;
+      // 	      }
+
+      // 	      // The intervals data as narrow lines (useful for showing raw source data)
+      //         var options_lines = {
+      // 		  title: plot_title,
+      // 		  series: [{'color': '#F1CA3A'}],
+      // 		  intervals: { 'style':'area' },
+      // 		  legend: 'right'
+      //         };
+
+      // 	      var data = response.getDataTable();
+      // 	      var chart = new google.visualization.LineChart(document.getElementById(div_name));
+      // 	      chart.draw(data, options_lines);
+      // 	  }
+      // }
 
     </script>
   </head>
