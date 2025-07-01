@@ -8,9 +8,10 @@
       // Load the Charts and the corechart package.
 
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(makeChartCallback('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosSparse_spmv_n_10000_nv_1_real_time.csv', 'spmv_10000_1-div'));
+      google.charts.setOnLoadCallback(makeChartCallback('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosSparse_spmv_n_10000_nv_1_real_time.csv', 'spmv_10000_1-div', 'Spmv: num row 10,000, num vecs 1'));
+      google.charts.setOnLoadCallback(makeChartCallback('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosBlas_dot_m_100000_real_time.csv', 'dot-div', 'Dot: vec length 100,000'));
 
-      function makeChartCallback(csv_file, div_name) {
+      function makeChartCallback(csv_file, div_name, plot_title) {
 	  return function() {
 	
 	      var queryOptions = {
@@ -23,7 +24,7 @@
 	      // Create the query giving the path and name of the CSV file
 	      var query = new google.visualization.Query(csv_file, queryOptions);
 	      // query.send(handleQueryResponse);
-	      query.send(makeQueryHandlerWithParams(div_name, 'Spmv: num row 10,000, num vecs 1'));
+	      query.send(makeQueryHandlerWithParams(div_name, plot_title));
 	  }
       }
 
@@ -73,6 +74,6 @@
   <body>
     <!--Div that will hold the dashboard-->
     <div id="spmv_10000_1-div" style="width: 900px; height: 500px;"></div>
-    <!-- <div id="spmv_10000_1-div" style="width: 900px; height: 500px;"></div> -->
+    <div id="dot-div" style="width: 900px; height: 500px;"></div>
   </body>
 </html>
