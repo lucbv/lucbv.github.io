@@ -14,13 +14,13 @@
 	
 	  var queryOptions = {
 	      // Define the CSV data columns
-    	      csvColumns: ['string', 'number', 'number', 'number', 'number'],
+    	      csvColumns: ['string', 'number'],
 	      // This should be false if your CSV file doesn't have a header
     	      csvHasHeader: true
 	  };
 	   
 	  // Create the query giving the path and name of the CSV file
-	  var query = new google.visualization.Query('https://lucbv.github.io/mycsv.csv', queryOptions);
+	  var query = new google.visualization.Query('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosSparse_spmv_n_10000_nv_1_real_time.csv', queryOptions);
 	  query.send(handleQueryResponse);
       }
 
@@ -32,7 +32,7 @@
 
 	  // The intervals data as narrow lines (useful for showing raw source data)
           var options_lines = {
-              title: 'Area intervals, default',
+              title: 'Spmv: num row 10,000, num vecs 1',
               curveType: 'function',
               series: [{'color': '#F1CA3A'}],
               intervals: { 'style':'area' },
@@ -40,7 +40,7 @@
           };
 
 	  var data = response.getDataTable();
-	  var chart = new google.visualization.LineChart(document.getElementById('csv-div'));
+	  var chart = new google.visualization.LineChart(document.getElementById('spmv_10000_1-div'));
 	  chart.draw(data, options_lines);
       }
 
@@ -49,6 +49,6 @@
 
   <body>
     <!--Div that will hold the dashboard-->
-    <div id="csv-div" style="width: 900px; height: 500px;"></div>
+    <div id="spmv_10000_1-div" style="width: 900px; height: 500px;"></div>
   </body>
 </html>
