@@ -8,9 +8,9 @@
       // Load the Charts and the corechart package.
 
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(makeChartCallback('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosSparse_spmv_n_10000_nv_1_real_time.csv'));
+      google.charts.setOnLoadCallback(makeChartCallback('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosSparse_spmv_n_10000_nv_1_real_time.csv', 'spmv_10000_1-div'));
 
-      function makeChartCallback(csv_file) {
+      function makeChartCallback(csv_file, div_name) {
 	  return function() {
 	
 	      var queryOptions = {
@@ -23,7 +23,7 @@
 	      // Create the query giving the path and name of the CSV file
 	      var query = new google.visualization.Query(csv_file, queryOptions);
 	      // query.send(handleQueryResponse);
-	      query.send(makeQueryHandlerWithParams('spmv_10000_1-div', 'blah'));
+	      query.send(makeQueryHandlerWithParams(div_name, 'Spmv: num row 10,000, num vecs 1'));
 	  }
       }
 
