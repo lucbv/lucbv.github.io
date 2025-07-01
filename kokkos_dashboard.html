@@ -32,14 +32,14 @@
 
 	  // The intervals data as narrow lines (useful for showing raw source data)
           var options_lines = {
-	      title: plot_title,
+	      title: 'Spmv: num row 10,000, num vecs 1',
 	      series: [{'color': '#F1CA3A'}],
 	      intervals: { 'style':'area' },
 	      legend: 'right'
           };
 
 	  var data = response.getDataTable();
-	  var chart = new google.visualization.LineChart(document.getElementById(div_name));
+	  var chart = new google.visualization.LineChart(document.getElementById('spmv_10000_1-div'));
 	  chart.draw(data, options_lines);
       }
 
