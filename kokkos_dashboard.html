@@ -10,6 +10,7 @@
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(makeChartCallback('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosSparse_spmv_n_10000_nv_1_real_time.csv', 'spmv_10000_1-div', 'Spmv: num row 10,000, num vecs 1'));
       google.charts.setOnLoadCallback(makeChartCallback('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosBlas_dot_m_100000_real_time.csv', 'dot-div', 'Dot: vec length 100,000'));
+      google.charts.setOnLoadCallback(makeChartCallback('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosBlas3_GEMM_m_1000_n_1000_k_1000_manual_time.csv', 'gemm-div', 'Gemm: 1000x1000x1000'));
 
       function makeChartCallback(csv_file, div_name, plot_title) {
 	  return function() {
@@ -27,25 +28,6 @@
 	      query.send(makeQueryHandlerWithParams(div_name, plot_title));
 	  }
       }
-
-      // function handleQueryResponse(response) {
-      // 	  if (response.isError()) {
-      // 	      alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-      // 	      return;
-      // 	  }
-
-      // 	  // The intervals data as narrow lines (useful for showing raw source data)
-      //     var options_lines = {
-      // 	      title: 'Spmv: num row 10,000, num vecs 1',
-      // 	      series: [{'color': '#F1CA3A'}],
-      // 	      intervals: { 'style':'area' },
-      // 	      legend: 'right'
-      //     };
-
-      // 	  var data = response.getDataTable();
-      // 	  var chart = new google.visualization.LineChart(document.getElementById('spmv_10000_1-div'));
-      // 	  chart.draw(data, options_lines);
-      // }
 
       const makeQueryHandlerWithParams = (div_name, plot_title) => {
 	  return function handleQueryResponse(response) {
@@ -75,5 +57,6 @@
     <!--Div that will hold the dashboard-->
     <div id="spmv_10000_1-div" style="width: 900px; height: 500px;"></div>
     <div id="dot-div" style="width: 900px; height: 500px;"></div>
+    <div id="gemm-div" style="width: 900px; height: 500px;"></div>
   </body>
 </html>
