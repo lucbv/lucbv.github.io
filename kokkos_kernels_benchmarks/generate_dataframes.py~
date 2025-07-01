@@ -29,6 +29,8 @@ for benchmark_dir in benchmark_dirs:
 
 df = pd.DataFrame.from_dict(data_dict)
 
-print(df.loc[df['name'] == "KokkosBlas_dot/m:10000000/real_time"])
+benchmarks_list = df['name'].unique()
 
-df.loc[df['name'] == "KokkosBlas_dot/m:10000000/real_time"].to_csv('KokkosBlas_dot_m_10000000_real_time.csv')
+for benchmark in benchmarks_list:
+    bench_data = df.loc[df['name'] == benchmark]
+    bench_data["time"].to_csv(benchmark.replace('/', '_').replace(':', '_')+'.csv')

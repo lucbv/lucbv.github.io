@@ -28,9 +28,11 @@ for benchmark_dir in benchmark_dirs:
                 data_dict["time unit"].append(data["benchmarks"][benchIdx]["time_unit"])
 
 df = pd.DataFrame.from_dict(data_dict)
+df["date"] = pd.to_datetime(df["date"])
+print(df.dtypes)
 
 benchmarks_list = df['name'].unique()
 
 for benchmark in benchmarks_list:
     bench_data = df.loc[df['name'] == benchmark]
-    bench_data["time"].to_csv(benchmark.replace('/', '_').replace(':', '_')+'.csv')
+    bench_data[["date", "time"]].set_index("date").to_csv(benchmark.replace('/', '_').replace(':', '_')+'.csv')
