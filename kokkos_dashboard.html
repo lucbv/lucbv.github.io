@@ -8,9 +8,9 @@
       // Load the Charts and the corechart package.
 
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart('https://lucbv.github.io/kokkos_kernels_benchmarks/KokkosSparse_spmv_n_10000_nv_1_real_time.csv'));
+      google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart(csv_file) {
+      function drawChart() {
 	
 	  var queryOptions = {
 	      // Define the CSV data columns
